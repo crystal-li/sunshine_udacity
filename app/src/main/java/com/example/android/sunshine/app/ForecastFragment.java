@@ -16,6 +16,7 @@
 package com.example.android.sunshine.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.net.Uri;
 import android.text.format.Time;
@@ -118,9 +119,10 @@ public class ForecastFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String clickedItem = (String) listView.getItemAtPosition(i);
-                Toast toast = Toast.makeText(getActivity(), clickedItem, Toast.LENGTH_SHORT);
-                toast.show();
+                String forecastString = (String) listView.getItemAtPosition(i);
+                Intent intent = new Intent(getActivity(), DetailActivity.class)
+                        .putExtra(Intent.EXTRA_TEXT, forecastString);
+                startActivity(intent);
             }
         });
 
